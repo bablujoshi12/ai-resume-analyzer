@@ -145,6 +145,10 @@ Using logical programs, it will recommend
 
 ## Setup & Installation 👀
 
+### ✅ Quick Install (Updated)
+
+See `INSTALL.md` for the latest setup steps (Python venv, MySQL, NLTK, SpaCy, and run commands).
+
 To run this project, perform the following tasks 😨
 
 Download the code file manually or via git
