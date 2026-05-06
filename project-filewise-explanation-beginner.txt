@@ -1,0 +1,396 @@
+AI Resume Analyzer - File Wise Explanation (Beginner Friendly)
+==============================================================
+
+Is file ka purpose:
+- Aapko simple language me samjhana ki project me kaunsi file kya kaam karti hai
+- Code flow (start se end tak) clear karna
+- Beginner level pe quickly samajh aana
+
+
+1) Project Structure me Important Files
+======================================
+
+1. `App/App.py`
+----------------
+Ye project ki main file hai.
+Isme almost saara logic hai:
+- Streamlit UI
+- Resume upload
+- Resume parsing
+- Role prediction call
+- Score calculation
+- JD match
+- Suggestions
+- Skill gap analysis
+- PDF report download
+- Feedback form
+- Admin login + dashboard
+- Database read/write
+
+Simple words me: app ka brain + UI dono isi file me hain.
+
+
+2. `App/Courses.py`
+-------------------
+Isme predefined data hai:
+- Role-wise course links
+- Resume/interview video links
+
+Simple words me: suggestion content storage file.
+
+
+3. `App/ml_role_model.py`
+-------------------------
+Is file me job role prediction logic hai:
+- TF-IDF vectorizer
+- Logistic Regression model
+- Basic text cleaning
+- Manual override rules
+  - HTML+CSS+JS => Web Development
+  - Python + ML/AI => Data Science
+- Keyword weighting for better prediction
+
+Simple words me: ye file decide karti hai resume kis role ka hai.
+
+
+4. `App/matching_scoring.py`
+----------------------------
+Isme 2 core features hain:
+- Resume vs JD match percentage (TF-IDF + cosine similarity)
+- Improved resume score (skills + length + relevance)
+
+Simple words me: match aur score ka math isi file me hota hai.
+
+
+5. `App/artifacts/role_classifier.joblib`
+------------------------------------------
+Ye trained ML model file hoti hai (auto create ho sakti hai).
+Prediction ke time load hoti hai.
+
+
+6. `run-command.txt`
+--------------------
+Isme app run karne ka command saved hai.
+
+
+7. `feature-report-hinglish.txt`
+--------------------------------
+Project features + testing guide ka Hinglish summary.
+
+
+8. `project-updates-and-testing-guide.txt`
+------------------------------------------
+Detailed testing/checklist/report file.
+
+
+2) App me Main Features ka Code Kahan hai
+==========================================
+
+1. Resume Upload + Parse
+- File: `App/App.py`
+- Flow:
+  - file uploader se PDF upload
+  - local folder me save
+  - parser se extracted data
+  - text extraction
+
+2. Role Prediction
+- File: `App/ml_role_model.py` (logic)
+- File: `App/App.py` (display)
+
+3. Resume Score + JD Match
+- File: `App/matching_scoring.py`
+- File: `App/App.py` me output render hota hai
+
+4. Skill Recommendations
+- File: `App/App.py`
+- `predicted_role` ke basis pe recommended skills/courses dikhte hain
+
+5. Skill Gap Analysis
+- File: `App/App.py`
+- Function: role required skills vs user skills compare
+
+6. Resume Improvement Suggestions
+- File: `App/App.py`
+- Rule-based missing sections + missing skills suggestions
+
+7. PDF Download Report
+- File: `App/App.py`
+- ReportLab use karke PDF banata hai
+
+8. Feedback System
+- File: `App/App.py`
+- Form submit + DB insert + chart/comment display
+
+9. Admin Login/Dashboard
+- File: `App/App.py`
+- DB-based login, session state, analytics dashboard
+
+
+3) Full System Flow (Beginner Level)
+====================================
+
+Step 1: App start hota hai
+- `App.py` run hoti hai
+- page config + theme apply hota hai
+
+Step 2: Sidebar navigation
+- User Analysis / Admin / Feedback / About section choose karta hai
+
+Step 3: Analysis section
+- User details fill karta hai
+- Resume upload karta hai
+- Optional JD paste karta hai
+
+Step 4: Resume parsing
+- Resume se text aur fields extract hote hain
+
+Step 5: Prediction + scoring
+- ML role prediction hota hai
+- Resume score calculate hota hai
+- JD match % nikalta hai
+
+Step 6: Recommendations
+- Suggested skills/courses
+- Skill gap (important/optional)
+- Resume improvement suggestions
+
+Step 7: PDF report
+- User "Download Analysis PDF" button se report save kar sakta hai
+
+Step 8: Database save
+- Analysis data DB me store hota hai
+
+Step 9: Feedback
+- User rating/comment submit karta hai
+- Feedback DB + charts update hote hain
+
+Step 10: Admin dashboard
+- Admin login
+- User data/feedback/analytics view
+- Logout
+
+
+4) Database Related Simple View
+===============================
+
+Main tables:
+- `user_data` -> user analysis records
+- `user_feedback` -> feedback entries
+- `admin_users` -> admin login credentials (hashed password)
+
+
+5) Beginner Tips
+================
+
+1. Sabse pehle `App/App.py` samjho (major logic yahi hai)
+2. Phir `ml_role_model.py` padho (prediction samajhne ke liye)
+3. `matching_scoring.py` padho (score + match logic)
+4. Feature add karna ho to pehle `App.py` me UI hook lagao
+5. Har change ke baad app run karke test karo
+
+
+6) Run Command (Quick)
+======================
+
+cd "C:\Users\hp\Downloads\AI-Resume-Analyzer-main\AI-Resume-Analyzer-main\App"
+"..\.venv39\Scripts\python.exe" -m streamlit run App.py
+
+AI Resume Analyzer - File Wise Explanation (Beginner Friendly)
+==============================================================
+
+Is file ka purpose:
+- Aapko simple language me samjhana ki project me kaunsi file kya kaam karti hai
+- Code flow (start se end tak) clear karna
+- Beginner level pe quickly samajh aana
+
+
+1) Project Structure me Important Files
+======================================
+
+1. `App/App.py`
+----------------
+Ye project ki main file hai.
+Isme almost saara logic hai:
+- Streamlit UI
+- Resume upload
+- Resume parsing
+- Role prediction call
+- Score calculation
+- JD match
+- Suggestions
+- Skill gap analysis
+- PDF report download
+- Feedback form
+- Admin login + dashboard
+- Database read/write
+
+Simple words me: app ka brain + UI dono isi file me hain.
+
+
+2. `App/Courses.py`
+-------------------
+Isme predefined data hai:
+- Role-wise course links
+- Resume/interview video links
+
+Simple words me: suggestion content storage file.
+
+
+3. `App/ml_role_model.py`
+-------------------------
+Is file me job role prediction logic hai:
+- TF-IDF vectorizer
+- Logistic Regression model
+- Basic text cleaning
+- Manual override rules
+  - HTML+CSS+JS => Web Development
+  - Python + ML/AI => Data Science
+- Keyword weighting for better prediction
+
+Simple words me: ye file decide karti hai resume kis role ka hai.
+
+
+4. `App/matching_scoring.py`
+----------------------------
+Isme 2 core features hain:
+- Resume vs JD match percentage (TF-IDF + cosine similarity)
+- Improved resume score (skills + length + relevance)
+
+Simple words me: match aur score ka math isi file me hota hai.
+
+
+5. `App/artifacts/role_classifier.joblib`
+------------------------------------------
+Ye trained ML model file hoti hai (auto create ho sakti hai).
+Prediction ke time load hoti hai.
+
+
+6. `run-command.txt`
+--------------------
+Isme app run karne ka command saved hai.
+
+
+7. `feature-report-hinglish.txt`
+--------------------------------
+Project features + testing guide ka Hinglish summary.
+
+
+8. `project-updates-and-testing-guide.txt`
+------------------------------------------
+Detailed testing/checklist/report file.
+
+
+2) App me Main Features ka Code Kahan hai
+==========================================
+
+1. Resume Upload + Parse
+- File: `App/App.py`
+- Flow:
+  - file uploader se PDF upload
+  - local folder me save
+  - parser se extracted data
+  - text extraction
+
+2. Role Prediction
+- File: `App/ml_role_model.py` (logic)
+- File: `App/App.py` (display)
+
+3. Resume Score + JD Match
+- File: `App/matching_scoring.py`
+- File: `App/App.py` me output render hota hai
+
+4. Skill Recommendations
+- File: `App/App.py`
+- `predicted_role` ke basis pe recommended skills/courses dikhte hain
+
+5. Skill Gap Analysis
+- File: `App/App.py`
+- Function: role required skills vs user skills compare
+
+6. Resume Improvement Suggestions
+- File: `App/App.py`
+- Rule-based missing sections + missing skills suggestions
+
+7. PDF Download Report
+- File: `App/App.py`
+- ReportLab use karke PDF banata hai
+
+8. Feedback System
+- File: `App/App.py`
+- Form submit + DB insert + chart/comment display
+
+9. Admin Login/Dashboard
+- File: `App/App.py`
+- DB-based login, session state, analytics dashboard
+
+
+3) Full System Flow (Beginner Level)
+====================================
+
+Step 1: App start hota hai
+- `App.py` run hoti hai
+- page config + theme apply hota hai
+
+Step 2: Sidebar navigation
+- User Analysis / Admin / Feedback / About section choose karta hai
+
+Step 3: Analysis section
+- User details fill karta hai
+- Resume upload karta hai
+- Optional JD paste karta hai
+
+Step 4: Resume parsing
+- Resume se text aur fields extract hote hain
+
+Step 5: Prediction + scoring
+- ML role prediction hota hai
+- Resume score calculate hota hai
+- JD match % nikalta hai
+
+Step 6: Recommendations
+- Suggested skills/courses
+- Skill gap (important/optional)
+- Resume improvement suggestions
+
+Step 7: PDF report
+- User "Download Analysis PDF" button se report save kar sakta hai
+
+Step 8: Database save
+- Analysis data DB me store hota hai
+
+Step 9: Feedback
+- User rating/comment submit karta hai
+- Feedback DB + charts update hote hain
+
+Step 10: Admin dashboard
+- Admin login
+- User data/feedback/analytics view
+- Logout
+
+
+4) Database Related Simple View
+===============================
+
+Main tables:
+- `user_data` -> user analysis records
+- `user_feedback` -> feedback entries
+- `admin_users` -> admin login credentials (hashed password)
+
+
+5) Beginner Tips
+================
+
+1. Sabse pehle `App/App.py` samjho (major logic yahi hai)
+2. Phir `ml_role_model.py` padho (prediction samajhne ke liye)
+3. `matching_scoring.py` padho (score + match logic)
+4. Feature add karna ho to pehle `App.py` me UI hook lagao
+5. Har change ke baad app run karke test karo
+
+
+6) Run Command (Quick)
+======================
+
+cd "C:\Users\hp\Downloads\AI-Resume-Analyzer-main\AI-Resume-Analyzer-main\App"
+"..\.venv39\Scripts\python.exe" -m streamlit run App.py
+

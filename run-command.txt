@@ -1,0 +1,2 @@
+cd "C:\Users\hp\Downloads\AI-Resume-Analyzer-main\AI-Resume-Analyzer-main\App"
+"..\.venv39\Scripts\python.exe" -m streamlit run App.py

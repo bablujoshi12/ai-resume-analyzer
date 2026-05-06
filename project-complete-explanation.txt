@@ -1,0 +1,183 @@
+AI Resume Analyzer - Complete Project Explanation
+=================================================
+
+1) Project Kya Hai
+------------------
+AI Resume Analyzer ek Streamlit-based web application hai jo resume (PDF) ko parse karke:
+- candidate ka extracted profile data dikhata hai,
+- likely job domain predict karta hai,
+- skills/courses recommend karta hai,
+- resume content ke basis par score deta hai,
+- aur admin side par analytics + export provide karta hai.
+
+Yeh project mainly students/freshers/recruiters ke liye useful hai.
+
+
+2) Tech Stack
+-------------
+- Frontend + App Framework: Streamlit
+- Language: Python
+- Database: MySQL (database name default: `cv`)
+- Resume Parsing: `pyresparser`, `pdfminer3`
+- NLP Resources: `nltk` (e.g., stopwords, punkt)
+- Charts/Analytics: Plotly
+- Geolocation: geocoder + geopy
+
+
+3) Main Files Aur Unka Role
+---------------------------
+- `App/App.py`
+  Core application file. Isme UI, DB operations, resume processing, recommendations, scoring, feedback, admin analytics sab handle hota hai.
+
+- `App/Courses.py`
+  Predefined course lists + video links (resume/interview recommendations).
+
+- `App/Uploaded_Resumes/`
+  User uploaded PDFs temporary/local storage ke liye.
+
+
+4) App Startup Flow (High-Level)
+--------------------------------
+1. Streamlit app start hota hai.
+2. Page config set hota hai (title/icon/layout).
+3. MySQL connection establish hota hai.
+4. DB/table auto-create logic run hota hai agar missing ho.
+5. Sidebar se user mode choose karta hai:
+   - User
+   - Feedback
+   - About
+   - Admin
+
+
+5) User Mode - End-to-End Working
+---------------------------------
+Step A: User Input
+- Name, mail, mobile collect hota hai.
+- System metadata bhi collect hota hai:
+  - hostname/IP
+  - OS info
+  - geolocation-derived city/state/country
+  - secure token
+
+Step B: Resume Upload
+- User PDF upload karta hai.
+- File `Uploaded_Resumes` me save hoti hai.
+- Same PDF inline preview hota hai.
+
+Step C: Parsing
+- `ResumeParser(...).get_extracted_data()` run hota hai.
+- Additional raw text extraction `pdfminer3` se hota hai.
+
+Step D: Extracted Info Display
+- Name, email, contact, degree, pages etc display hota hai.
+
+Step E: Candidate Level Prediction
+- Resume text me internship/experience keywords detect karke level infer hota hai:
+  - Fresher
+  - Intermediate
+  - Experienced
+
+Step F: Skill Recommendation Logic
+- Parsed skills list ko predefined keyword groups se match kiya jata hai:
+  - Data Science
+  - Web Development
+  - Android
+  - iOS
+  - UI/UX
+- Matched group ke basis par:
+  - predicted field set hota hai,
+  - recommended skills list show hoti hai,
+  - corresponding course recommendations show hoti hain.
+
+Step G: Resume Score Engine
+- Resume text me sections detect karke weighted score diya jata hai:
+  - Objective/Summary
+  - Education
+  - Experience
+  - Internships
+  - Skills
+  - Hobbies
+  - Interests
+  - Achievements
+  - Certifications
+  - Projects
+- Score progress bar ke saath render hota hai.
+
+Step H: Video Recommendations
+- Random resume-tips + interview-tips videos suggest hoti hain.
+
+Step I: Data Persistence
+- Complete processed record `user_data` table me insert hota hai.
+
+
+6) Feedback Mode - Working
+--------------------------
+- User feedback form submit karta hai:
+  - name, email, rating, comment
+- Data `user_feedback` table me store hota hai.
+- Historical rating pie chart show hota hai.
+- Previous comments table form me show hote hain.
+
+
+7) Admin Mode - Working
+-----------------------
+- Hardcoded credentials:
+  - username: `admin`
+  - password: `admin@resume-analyzer`
+
+Login success ke baad:
+- Total users count show hota hai.
+- Full user dataset table show hota hai.
+- CSV report download link milta hai.
+- Feedback table show hoti hai.
+- Multiple analytics pie charts render hote hain:
+  - feedback rating distribution
+  - predicted field
+  - user level
+  - resume score
+  - usage by IP/city/state/country
+
+
+8) Database Design (Conceptual)
+-------------------------------
+Table: `user_data`
+- User identity + contact + metadata
+- Predicted field, user level
+- Actual and recommended skills/courses
+- Resume score, page count, file name, timestamp
+
+Table: `user_feedback`
+- feedback user info
+- rating
+- comments
+- timestamp
+
+
+9) Important Runtime Dependencies
+---------------------------------
+- MySQL server running hona chahiye.
+- Python environment me required packages installed hone chahiye.
+- NLTK corpora (minimum: `stopwords`, often `punkt`) available hone chahiye.
+
+
+10) Current Limitations
+-----------------------
+- Domain prediction keyword-based hai (ML classifier nahi).
+- Admin credentials hardcoded hain (production safe nahi).
+- Scoring heuristic-based hai (semantic quality evaluate nahi karta).
+- Resume parsing quality PDF structure par depend karti hai.
+- Location lookup network dependent hai.
+
+
+11) Security/Production Notes
+-----------------------------
+- Hardcoded admin credentials ko env/config based secure auth se replace karna chahiye.
+- DB credentials env vars se manage karna better hai.
+- Input validation + rate limits + file size checks add hone chahiye.
+- Uploaded resume storage cleanup/retention policy hona chahiye.
+
+
+12) Overall Summary
+-------------------
+Yeh project practical Resume Intelligence tool hai jo parsing + recommendation + scoring + analytics ek hi dashboard me deta hai. Student projects aur small recruitment workflows ke liye kaafi useful baseline hai. Professional-grade banane ke liye authentication, robust parsing pipeline, better ML-based prediction, aur UX modernization required hoti hai.
+

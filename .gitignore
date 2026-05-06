@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Virtual environments
+.venv/
+.venv39/
+.venv_run/
+venv/
+venvapp/
+
+# Streamlit
+.streamlit/
+
+# Local uploads / large binaries
+App/Uploaded_Resumes/
+*.pdf
+
+# ML artifacts (can be regenerated)
+App/artifacts/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
